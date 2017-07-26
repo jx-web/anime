@@ -1,0 +1,65 @@
+<% include header_min %> 
+<!-- 提交的表单 -->
+<h1>注册</h1>
+<hr>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-sm-3 col-xs-0"></div>
+		<div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="input-group myinput">
+			  <span class="input-group-addon" id="basic-addon1"> &nbsp; 用 &nbsp; &nbsp; 户：</span>
+			  <input type="text" class="form-control"  aria-describedby="basic-addon1" id="username">
+			</div>	
+			<div class="input-group myinput">
+			  <span class="input-group-addon" id="basic-addon1"> &nbsp; 密 &nbsp; &nbsp; 码：</span>
+			  <input type="password" class="form-control" aria-describedby="basic-addon1" id="password">
+			</div>	
+			<div class="input-group myinput">
+			  <span class="input-group-addon" id="basic-addon1">确认密码：</span>
+			  <input type="password" class="form-control" aria-describedby="basic-addon1" id="password1">
+			</div>	
+			<div class="input-group myinput">
+				<input type="submit" id="register" value="注册">
+				<input type="submit" id="login" value="立即登录" style="margin-left: 10px;">
+			</div>						
+		</div>
+		<div class="col-md-4 col-sm-3 col-xs-0"></div>
+	</div>  		
+</div>
+
+<script type="text/javascript">
+
+	// 登录 
+	$('#login').click(function(){
+		location.href = '/login';
+	})
+
+	// 注册	
+	$('#register').click(function(){
+
+		if($('#password').val() !== $('#password1').val()){
+			// 密码不一致
+			$('#password').css('border','1px solid red');
+			$('#password1').css('border','1px solid red');
+		}else{
+
+			$.ajax({
+				url:'/doRegister',
+				type:'post',
+				data:{
+					username:$('#username').val(),
+					password:$('#password').val(),
+				},
+				success:function(response){
+				    console.log(response);
+					location.href =  '/login';		
+				},
+				error:function(){
+					alert('不好意思，人品有问题不能注册');
+					location.href =  '/register';		
+				}
+			})
+		}
+	});
+</script>
+<% include footer_min%>

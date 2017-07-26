@@ -1,0 +1,63 @@
+<% include header %>
+<!-- 轮播图 -->
+<div class="container">
+        <div class="col-md-6 logo">
+            <img src="/images/logo.jpg" alt="">
+        </div>
+        <div id="carousel-example-generic" class="carousel slide col-md-6" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div id="swiper" class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="/images/3.jpg" alt="...">
+                    <div class="carousel-caption">
+                        <p>我要打败大海上所有海贼，只有这样我才可以成为海贼王！</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/images/5.jpg" alt="...">
+                    <div class="carousel-caption">
+                        <p>假如我们相遇，肯定一眼就能认出彼此</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/images/7.jpg" alt="...">
+                    <div class="carousel-caption">
+                        <p>夏之忆，泣凋零，彼日花未名。</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+</div>
+<!-- 轮播图 End-->
+
+<div class="container">
+	<% items.forEach(function(val){ %>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title"><%= val.name %></h3>
+			</div>
+			<% data.forEach(function(val1){%>
+			<% if(val.name==val1.categoryId.name){ %>
+			<div class="panel-body ib">
+                <img width="100" src="/<%= val1.cover %>" alt="">
+                <p><%= val1.title%></p>
+			</div>
+			<% } %>
+			<% }) %>
+		</div>
+	<% }) %>
+</div>
+<script>
+
+</script>
+
+<% include footer %>

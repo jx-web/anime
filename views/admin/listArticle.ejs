@@ -1,0 +1,45 @@
+<% include ../header_min %> 
+<div class="container">
+    <table class="table table-hover article-list">
+    	<tr>
+            <th>封面</th>
+    		<th>分类</th>
+    		<th>文章标题</th>    
+            <th>作者</th> 
+            <th>创建时间</th>       
+    		<th>操作</th>
+    	</tr>
+    	<% datalist.forEach(function(val){ %>
+    		<tr class="ctl">
+                <td>
+                    <img width="100" src="/<%= val.cover %>"> 
+                </td>
+                <td><%= val.categoryId.name %></td>
+                <td><%= val.title %></td>
+                <td><%= val.author==''?'佚名':val.author %></td>
+                <td><%= val.createTime.toLocaleString() %></td>
+    			<td style="text-align:center">
+    				<a href="/admin/editArticle/<%= val._id %>">修改</a>
+    				&nbsp;|&nbsp;
+    				<a href="/admin/delData/<%= val._id %>" onclick="return confirm('你确定要删除吗')">删除</a>
+    			</td>
+    		</tr>
+    	<% }) %>
+    </table>
+    <!-- 分页 -->
+    <nav>
+      <ul class="pagination">
+        <li><a href="/admin/listArticle">首页</a></li>
+        <li><a href="/admin/listArticle?page=<%= page-1 %>">&laquo;</a></li>
+        <% for(var i=1;i<=pageMax;i++){ %>
+            <li><a href="/admin/listArticle?page=<%= i %>"><%=i%></a></li>
+        <% } %>
+        <li><a href="/admin/listArticle?page=<%= -(-page-1) %>">&raquo;</a></li>
+        <li><a href="/admin/listArticle?page=<%= pageMax %>">尾页</a></li>
+      </ul>
+    </nav>
+    <!-- 分页 End--> 
+</div>
+
+<% include ../footer_min %>
+ 

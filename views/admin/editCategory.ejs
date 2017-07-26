@@ -1,0 +1,54 @@
+<% include ../header_min %>
+
+<!-- 提交的表单 -->
+  	<div class="container adedCat">
+		<div class="row">
+			<div class="col-md-4 col-sm-3 col-xs-0"></div>
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<form action="/admin/updateCategory" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="_id" value="<%= data._id %>">
+					<div class="input-group myinput">
+					  <span class="input-group-addon" id="basic-addon1">分类：</span>
+					  <input type="text" class="form-control"  aria-describedby="basic-addon1" name="name" value="<%= data.name %>">
+					</div>	
+					<div class="input-group myinput">
+					  <span class="input-group-addon" id="basic-addon1">排序：</span>
+					  <input type="text" class="form-control" aria-describedby="basic-addon1" name="order" value="<%= data.order %>">
+					</div>	
+					<div  class="input-group myinput">	
+					  <span class="input-group-addon" id="basic-addon1">logo：</span>
+					  <div class="form-control editPic">
+					  	<img id="img" src="/<%= data.img %>">
+					  	<input id="file" type="file" name="newimg" onchange="readAsDataURL();">
+					  	<input type="hidden" name="img" value="<%= data.img %>">
+					  </div>
+					</div>	
+					<div class="input-group myinput">
+						<input type="submit" value="提交">
+					</div>														
+				</form>	
+			</div>
+			<div class="col-md-4 col-sm-3 col-xs-0"></div>
+		</div>  		
+  	</div>
+	<script>
+		var fileInput = document.getElementById('file');
+		// 处理兼容性
+		if( typeof(FileReader) == 'undefined'){
+			// alert('ok');
+			fileInput.disabled = true;
+		}
+		function readAsDataURL(){
+			// console.dir(fileInput);  文件信息
+			var myfile = fileInput.files[0];
+			// 实例化对象
+			var reader = new FileReader();	
+			reader.readAsDataURL(myfile);
+			// 读取文件完成后触发
+			reader.onload = function(){
+				// console.log(this.result);
+				document.getElementById('img').setAttribute("src",this.result);
+			}
+		}		
+	</script>
+<% include ../footer_min %>

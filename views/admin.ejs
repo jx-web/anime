@@ -1,0 +1,28 @@
+<% include header_min %> 
+<div class="container">
+    <table class="table categorylist">
+        <caption class="m-title">分类列表</caption>
+    	<tr>
+            <td>logo</td>
+    		<td>分类</td>
+    		<td>排序</td>                   
+    		<td style="text-align:center">操作</td>
+    	</tr>
+    	<% datalist.forEach(function(val){ %>
+    		<tr class="ctl">
+                <td>
+                    <img class="img" src="/<%= val.img %>"> 
+                </td>
+    			<td><%= val.name %></td>
+                <td><%= val.order %></td>
+    			<td style="text-align:center">
+    				<a href="/admin/editCategory/<%= val._id %>">修改</a>
+    				&nbsp;|&nbsp;
+    				<a href="/delData/<%= val._id %>" onclick="return confirm('你确定要删除吗')">删除</a>
+    			</td>
+    		</tr>
+    	<% }) %>
+    </table>
+</div>
+<% include footer_min %>
+ 

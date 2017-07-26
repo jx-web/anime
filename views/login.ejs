@@ -1,0 +1,51 @@
+<% include header_min %>
+<h1>登录</h1>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-3 col-xs-0"></div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="input-group myinput">
+                <span class="input-group-addon" id="basic-addon1"> &nbsp; 用 &nbsp; &nbsp; 户：</span>
+                <input type="text" class="form-control"  aria-describedby="basic-addon1" id="username">
+            </div>
+            <div class="input-group myinput">
+                <span class="input-group-addon" id="basic-addon1"> &nbsp; 密 &nbsp; &nbsp; 码：</span>
+                <input type="password" class="form-control" aria-describedby="basic-addon1" id="password">
+            </div>
+            <div class="input-group myinput">
+                <input type="submit" id="doLogin" value="登录">
+                <input type="submit" id="register" value="立即注册" style="margin-left: 10px;">
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-3 col-xs-0"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // 注册
+    $('#register').click(function(){
+        location.href = '/register';
+    })
+
+    // 登录
+    $('#doLogin').click(function(){
+        // 发数据
+        $.ajax({
+            url:'/doLogin',
+            type:'post',
+            data:{
+                username:$('#username').val(),
+                password:$('#password').val(),
+            },
+            success:function(response){
+                // alert(response);
+                location.href = '/';
+            },
+            error:function(){
+                location.href = '/login';
+            }
+        })
+    });
+</script>
+<% include footer_min %>

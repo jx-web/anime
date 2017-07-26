@@ -1,0 +1,40 @@
+<% include ../header_min %> 
+<div class="container">
+    <table class="table table-hover categorylist">
+    	<tr>
+            <th>封面</th>
+    		<th>分类</th>
+    		<th>排序</th>                   
+    		<th>操作</th>
+    	</tr>
+    	<% datalist.forEach(function(val){ %>
+    		<tr class="ctl">
+                <td>
+                    <img class="img" src="/<%= val.img %>"> 
+                </td>
+    			<td><%= val.name %></td>
+                <td><%= val.order %></td>
+    			<td style="text-align:center">
+    				<a href="/admin/editCategory/<%= val._id %>">修改</a>
+    				&nbsp;|&nbsp;
+    				<a href="/admin/delData/<%= val._id %>" onclick="return confirm('你确定要删除吗')">删除</a>
+    			</td>
+    		</tr>
+    	<% }) %>
+    </table>
+    <!-- 分页 -->
+    <nav>
+      <ul class="pagination">
+        <li><a href="/admin/listCategory">首页</a></li>
+        <li><a href="/admin/listCategory?page=<%= page-1 %>">&laquo;</a></li>
+        <% for(var i=1;i<=pageMax;i++){ %>
+            <li><a href="/admin/listCategory?page=<%= i %>"><%=i%></a></li>
+        <% } %>
+        <li><a href="/admin/listCategory?page=<%= -(-page-1) %>">&raquo;</a></li>
+        <li><a href="/admin/listCategory?page=<%= pageMax %>">尾页</a></li>
+      </ul>
+    </nav>
+    <!-- 分页 End-->    
+</div>
+<% include ../footer_min %>
+ 
